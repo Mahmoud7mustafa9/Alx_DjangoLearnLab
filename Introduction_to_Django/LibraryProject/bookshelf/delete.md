@@ -1,0 +1,1 @@
+# Delete the book you created and confirm the deletion by trying to retrieve all books again.
