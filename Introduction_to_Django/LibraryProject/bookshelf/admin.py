@@ -6,5 +6,5 @@ admin.site.register(Book)
 class AuthorAdmin(admin.ModelAdmin):
     pass
 class Book(admin.ModelAdmin):
-    search_field=["author"]
+    search_fields=["author"]
     list_filter=["title","publication_year"]
