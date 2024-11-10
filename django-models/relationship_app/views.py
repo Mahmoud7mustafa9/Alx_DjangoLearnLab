@@ -6,7 +6,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
 # Function-based View to list all books
-def list_books(request):
+def list_books (request):
     # Get all books from the database
     books = Book.objects.all()
     # Render the list in the template
