@@ -3,20 +3,27 @@ from django.db import models
 # Create your models here.
 class Author(models.model):
     name=models.CharField(max_length=200)
+    def __str__(self):
+        return self.name
 
 
 class Book(models.model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete= models.CASCADE )
-
+    def __str__(self):
+        return self.title
 
 class Library(models.model):
     name=models.CharField(max_length=100)
     books=models.ManyToManyField(Book,related_name= name)
-
+    def __str__(self):
+        return self.name
 class Librarian(models.Model):
     name=models.CharField(max_length=100)
     library = models.OneToOneField(Library)
+    def __str__(self):
+        return self.name 
+
 # Author Model:
 # name: CharField.
 # Book Model:,
