@@ -1,6 +1,7 @@
 from django.shortcuts import render
 # Create your views here.
-from .models import Book, Library
+from .models import Book
+from .models import Library
 from django.views.generic import ListView
 
 # Function-based View to list all books
