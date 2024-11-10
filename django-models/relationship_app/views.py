@@ -8,11 +8,11 @@ def list_books(request):
     # Get all books from the database
     books = Book.objects.all()
     # Render the list in the template
-    return render(request, 'relationship_app/book_list.html', {'books': books})
+    return render(request, "relationship_app/list_books.html", {'books': books})
 
 class LibraryDetailView(ListView):
     model = Book
-    template_name = 'relationship_app/library_detail.html'
+    template_name = "relationship_app/library_detail.html"
     context_object_name = 'books'
 
     def get_queryset(self):
