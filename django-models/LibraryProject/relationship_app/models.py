@@ -32,7 +32,7 @@ class Librarian(models.Model):
         return self.name 
 
 class UserProfile(models.Model):
-    role=models.CharField(max_length=100)
+    role=models.CharField(max_length=100, choices=[('LIbrarian','Librarian'),('Admin','Admin'),('Member','Member')])
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     def create_user_profile(sender, instance,created, **kwargs):
         if created:
