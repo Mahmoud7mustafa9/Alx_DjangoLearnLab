@@ -91,3 +91,5 @@ SECURE_CONTENT_TYPE_NOSNIFF = True  # Ensures the browser doesn't try to sniff t
 
 # 3. Enable browser's built-in XSS filtering
 SECURE_BROWSER_XSS_FILTER = True  # Enables the XSS filter built into most modern browsers to protect against XSS attacks
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
