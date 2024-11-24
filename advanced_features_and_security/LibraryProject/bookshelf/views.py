@@ -108,3 +108,23 @@ def edit_post(request, post_id):
     return render(request, 'edit_post.html', {'post': post})
 
 
+# bookshelf/views.py
+
+from django.shortcuts import render
+from .models import Book
+from django.db.models import Q
+
+def search_books(request):
+    query = request.GET.get('q', '')  # Get user input safely
+    books = Book.objects.filter(Q(title__icontains=query) | Q(author__icontains=query))  # Use ORM to prevent SQL injection
+    return render(request, 'bookshelf/book_list.html', {'books': books})
+
+
+# bookshelf/views.py
+
+from django.http import HttpResponse
+
+def my_view(request):
+    response = HttpResponse("Hello, world!")
+    response['Content-Security-Policy'] = "default-src 'self'; script-src 'self' https://trusted-cdn.com"
+    return response
