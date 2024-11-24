@@ -89,3 +89,22 @@ def delete_book(request,pk):
     return render(request,"relationship_app/delete_book.html",{'book':book})   
 
 
+# blog/views.py
+
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import permission_required
+from .models import Post
+from django.http import HttpResponseForbidden
+
+@permission_required('blog.can_edit', raise_exception=True)
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == 'POST':
+        # Process the form and update the post
+        post.title = request.POST['title']
+        post.content = request.POST['content']
+        post.save()
+        return render(request, 'post_detail.html', {'post': post})
+    return render(request, 'edit_post.html', {'post': post})
+
+
