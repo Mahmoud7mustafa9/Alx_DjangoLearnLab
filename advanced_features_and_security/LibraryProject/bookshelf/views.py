@@ -128,3 +128,19 @@ def my_view(request):
     response = HttpResponse("Hello, world!")
     response['Content-Security-Policy'] = "default-src 'self'; script-src 'self' https://trusted-cdn.com"
     return response
+
+
+
+from django.shortcuts import render, redirect
+from .forms import ExampleForm
+from .models import Book
+
+def add_book(request):
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the book data to the database
+            return redirect('book_list')  # Redirect to the book list page
+    else:
+        form = ExampleForm()
+    return render(request, 'bookshelf/form_example.html', {'form': form})
