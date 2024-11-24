@@ -20,3 +20,12 @@ urlpatterns = [
     # Include the router URLs for the BookViewSet (all CRUD operations)
     path('', include(router.urls)),  # This includes all routes registered with the router
 ]
+
+# api/urls.py
+from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token  # Import DRF's built-in view
+
+urlpatterns = [
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),  # Token retrieval endpoint
+    path('', include(router.urls)),  # Include the rest of your API's URLs
+]

@@ -21,3 +21,16 @@ from .serializers import BookSerializer
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()  # This is the data set we will operate on
     serializer_class = BookSerializer  # Serializer to format the data into JSON
+
+
+
+# api/views.py
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated  # Import IsAuthenticated
+from .models import Book
+from .serializers import BookSerializer
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticated]  # Only authenticated users can access this view
