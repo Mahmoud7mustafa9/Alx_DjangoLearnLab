@@ -58,3 +58,5 @@ class PostForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
+
+["TagWidget()", "widgets"]
