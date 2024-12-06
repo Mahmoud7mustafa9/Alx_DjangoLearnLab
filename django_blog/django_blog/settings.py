@@ -36,6 +36,7 @@ TEMPLATES = [
     },
 ]
 
+["taggit"]
 
 
 # Quick-start development settings - unsuitable for production
