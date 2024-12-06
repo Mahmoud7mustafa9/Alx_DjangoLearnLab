@@ -37,6 +37,17 @@ TEMPLATES = [
 ]
 
 ["taggit"]
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+TEMPLATES = [
+    {
+        'DIRS': [BASE_DIR / 'templates'],
+    },
+]
 
 
 # Quick-start development settings - unsuitable for production
