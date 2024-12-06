@@ -11,3 +11,36 @@
     <a href="{% url 'blog:post-delete' post.pk %}">Delete</a>
   {% endif %}
 {% endblock %}
+
+
+<!-- blog/templates/blog/post_detail.html -->
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.content }}</p>
+  <h2>Comments</h2>
+  <ul>
+    {% for comment in post.comments.all %}
+      <li>
+        <p>{{ comment.content }}</p>
+        <p>Posted by {{ comment.author }} at {{ comment.created_at }}</p>
+        {% if user == comment.author %}
+          <a href="{% url 'blog:comment-update' comment.pk %}">Edit</a>
+          <a href="{% url 'blog:comment-delete' comment.pk %}">Delete</a>
+        {% endif %}
+      </li>
+    {% empty %}
+      <p>No comments yet. Be the first to comment!</p>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_authenticated %}
+    <h3>Add a comment</h3>
+    <form method="post" action="{% url 'blog:comment-create' post.pk %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit comment</button>
+    </form>
+  {% endif %}
+{% endblock %}
