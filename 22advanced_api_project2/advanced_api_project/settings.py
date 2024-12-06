@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wz+5y5ufwq(sy!bu&_nwzc@b@-=vivg+63m=h*vhf+b=31dx1-'
+SECRET_KEY = 'django-insecure-r+9u@@)osvkp@5zlqd9!z2jn@cl&a-_n9-x$#ay6%r5-^!m4=n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'api',
+    'rest_framework',  # Ensure Django REST Framework is added
+    'api',  # Add your app here
 ]
 
 MIDDLEWARE = [
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'advanced_api_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],  # Add the templates directory here
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
