@@ -64,8 +64,11 @@ from . import views
 app_name = 'blog'
 
 urlpatterns = [
-    path('', views.PostListView.as_view(), name='post-list'),
+    path('', views.PostByTagListView.as_view(), name='post-list'),
     path('posts/<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
     path('search/', views.search, name='search'),
-    path('tags/<str:tag_name>/', views.tag_posts, name='tag-posts'),
+    path('tags/<str:tag_slug>/', views.tag_posts, name='tag-posts'),
 ]
+
+
+["tags/<slug:tag_slug>/", "PostByTagListView.as_view()"]
