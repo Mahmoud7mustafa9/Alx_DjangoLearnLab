@@ -70,6 +70,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'advanced_api_project.wsgi.application'
+DJANGO_SETTINGS_MODULE= 'advanced_api_project.settings'
 
 
 # Database
