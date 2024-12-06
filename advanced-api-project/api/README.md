@@ -22,3 +22,17 @@
 3. **Ordering**
    - Order by publication year (ascending): `/api/books/?ordering=publication_year`
    - Order by title (descending): `/api/books/?ordering=-title`
+
+
+## Running Tests
+
+### Test Scope
+This project includes unit tests for:
+- CRUD operations on the Book model.
+- Filtering, searching, and ordering books via API.
+- Permissions and authentication.
+
+### Running the Test Suite
+Run the following command from the project root:
+```bash
+python manage.py test api
