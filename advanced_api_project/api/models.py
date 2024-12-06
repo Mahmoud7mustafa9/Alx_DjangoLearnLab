@@ -11,7 +11,7 @@ from django.db import models
 # Action Items:
 
 # Define these models in api/models.py.
-# Run migrations to create these models in the database.
+# Run migrations to create these models in the database
 
 class Author(models.model):
     name=models.CharField(max_length=160)
