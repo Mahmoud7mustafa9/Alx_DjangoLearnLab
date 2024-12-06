@@ -1,3 +1,13 @@
+<!-- registration/profile.html -->
+<h2>Update Profile</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+</form>
+
+
+
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
