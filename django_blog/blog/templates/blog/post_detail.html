@@ -44,3 +44,17 @@
     </form>
   {% endif %}
 {% endblock %}
+
+<!-- blog/templates/blog/post_detail.html -->
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.content }}</p>
+  <h3>Tags:</h3>
+  <ul>
+    {% for tag in post.tags.all %}
+      <li><a href="{% url 'blog:tag-posts' tag.name %}">{{ tag.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -54,3 +54,18 @@ urlpatterns = [
     path('comment/<int:pk>/delete/', views.CommentDeleteView.as_view(), name='comment-delete'),
 ]
 ["post/<int:pk>/comments/new/"]
+
+
+
+# blog/urls.py
+from django.urls import path
+from . import views
+
+app_name = 'blog'
+
+urlpatterns = [
+    path('', views.PostListView.as_view(), name='post-list'),
+    path('posts/<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
+    path('search/', views.search, name='search'),
+    path('tags/<str:tag_name>/', views.tag_posts, name='tag-posts'),
+]
