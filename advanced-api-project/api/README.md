@@ -8,3 +8,17 @@
 ### Permissions
 - Read operations are available to all users.
 - Write operations (create, update, delete) require authentication.
+
+### API Querying Features
+
+1. **Filtering**
+   - Filter by title: `/api/books/?title=Sample Title`
+   - Filter by author name: `/api/books/?author__name=John Doe`
+   - Filter by publication year: `/api/books/?publication_year=2022`
+
+2. **Search**
+   - Search for books by text in title or author name: `/api/books/?search=Python`
+
+3. **Ordering**
+   - Order by publication year (ascending): `/api/books/?ordering=publication_year`
+   - Order by title (descending): `/api/books/?ordering=-title`
