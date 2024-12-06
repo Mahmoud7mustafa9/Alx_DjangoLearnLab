@@ -17,6 +17,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_URL = '/static/'  # URL to access static files
+STATICFILES_DIRS = [BASE_DIR / "static"]  # Additional directories for static files
 
 TEMPLATES = [
     {
