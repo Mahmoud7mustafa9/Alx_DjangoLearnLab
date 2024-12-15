@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework' ,
     'rest_framework.authtoken',
     'accounts',
+    'drf_yasg',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
