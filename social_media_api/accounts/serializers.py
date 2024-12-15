@@ -15,3 +15,5 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = CustomUser.objects.create_user(**validated_data)
         return user
+from rest_framework.authtoken.models import Token
+"serializers.CharField()", "Token.objects.create", "get_user_model().objects.create_user"
