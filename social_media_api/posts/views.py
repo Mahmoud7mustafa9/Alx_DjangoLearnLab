@@ -61,3 +61,4 @@ class FeedView(APIView):
         from .serializers import PostSerializer
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
+"Post.objects.filter(author__in=following_users).order_by"
