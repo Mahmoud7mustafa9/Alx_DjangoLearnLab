@@ -62,3 +62,50 @@ class FeedView(APIView):
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
 "Post.objects.filter(author__in=following_users).order_by"
+
+# posts/views.py
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+from .models import Post, Like
+from notifications.models import Notification
+
+class LikePostView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        try:
+            post = Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            return Response({"detail": "Post not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        like, created = Like.objects.get_or_create(user=request.user, post=post)
+        if created:
+            # Create a notification for the post owner
+            if post.user != request.user:
+                Notification.objects.create(
+                    recipient=post.user,
+                    actor=request.user,
+                    verb="liked your post",
+                    target=post
+                )
+            return Response({"detail": "Post liked."}, status=status.HTTP_200_OK)
+        else:
+            return Response({"detail": "Post already liked."}, status=status.HTTP_400_BAD_REQUEST)
+
+class UnlikePostView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        try:
+            post = Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            return Response({"detail": "Post not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            like = Like.objects.get(user=request.user, post=post)
+            like.delete()
+            return Response({"detail": "Post unliked."}, status=status.HTTP_200_OK)
+        except Like.DoesNotExist:
+            return Response({"detail": "You have not liked this post."}, status=status.HTTP_400_BAD_REQUEST)
