@@ -42,3 +42,22 @@ class PostViewSet(viewsets.ModelViewSet):
     pagination_class = PostPagination
     filter_backends = [SearchFilter]
     search_fields = ['title', 'content']
+
+# posts/views.py
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from .models import Post
+from django.db.models import Q
+
+class FeedView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        followed_users = request.user.following.all()
+        posts = Post.objects.filter(user__in=followed_users).order_by('-created_at')
+
+        # Serialize the posts (assuming you have a PostSerializer)
+        from .serializers import PostSerializer
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
